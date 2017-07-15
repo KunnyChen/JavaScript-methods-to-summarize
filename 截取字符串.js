@@ -2,12 +2,12 @@
  * @Author: KunnyChen
  * @Date:   2017-07-15 09:31:55
  * @Last Modified by:   KunnyChen
- * @Last Modified time: 2017-07-15 10:06:52
+ * @Last Modified time: 2017-07-15 11:47:06
+ * @Describe：字符串截取方法
  */
 
 'use strict';
 
-// 1.字符串截取方法
 // 方法 charCodeAt() 与 charAt() 方法执行的操作相似，只不过前者返回的是位于指定位置的字符的编码，而后者返回的是字符子串。
 getCharactersLen: function(charStr, cutCount) {
         if (charStr == null || charStr == '') return '';
@@ -52,3 +52,6 @@ document.write(str.slice(6)) //happy world!
 
 var str = "Hello happy world!"
 document.write(str.slice(6, 11)) //happy
+
+
+
