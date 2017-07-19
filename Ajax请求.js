@@ -2,7 +2,7 @@
  * @Author: KunnyChen
  * @Date:   2017-07-15 11:45:20
  * @Last Modified by:   KunnyChen
- * @Last Modified time: 2017-07-19 14:23:35
+ * @Last Modified time: 2017-07-19 16:58:54
  */
 
 'use strict';
@@ -56,6 +56,7 @@ export default (type = 'GET', url = '', data = {}, async = true) => {
 function myFunction() {
     loadXMLDoc("/try/ajax/ajax_info.txt", function() {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            // responseText：获得字符串形式的响应数据；responseXML：获得 XML 形式的响应数据。
             document.getElementById("myDiv").innerHTML = xmlhttp.responseText;
         }
     });
@@ -100,3 +101,42 @@ function myFunction() //响应执行时的操作
 // 407：访问的资源主要代理身份验证
 // 414：请求的URL太长
 // 500：服务器内部的错误
+
+
+
+//**************************************
+var xmlhttp;
+
+function loadXMLDoc(url, cfunc) {
+    //创建对象
+    -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+    if (window.XMLHttpRequest) { // IE7+, Firefox, Chrome, Opera, Safari 代码
+        xmlhttp = new XMLHttpRequest();
+    } else { // 兼容IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+    //用cfunc调用响应函数
+    -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+    xmlhttp.onreadystatechange = cfunc;
+
+    // 向服务器发送请求
+    -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
+}
+
+//服务器响应函数
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+
+function myFunction() {
+    //传入URL和响应后执行方法
+    loadXMLDoc("/try/ajax/ajax_info.txt", function() {
+        //响应条件
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            //获得字符串形式的响应数据
+            document.getElementById("myDiv").innerHTML = xmlhttp.responseText;
+        }
+    });
+}
+
