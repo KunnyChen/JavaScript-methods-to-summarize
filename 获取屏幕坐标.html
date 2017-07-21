@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>获取屏幕坐标</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        function mousePosition(ev) {
+            if (ev.pageX || ev.pageY) {
+                return {
+                    x: ev.pageX,
+                    y: ev.pageY
+                };
+            }
+            return {
+                x: ev.clientX + document.body.scrollLeft - document.body.clientLeft,
+                y: ev.clientY + document.body.scrollTop - document.body.clientTop
+            };
+        }
+
+        function mouseMove(ev) {
+            ev = ev || window.event;
+            var mousePos = mousePosition(ev);
+            document.getElementById('x-axis').value = mousePos.x;
+            document.getElementById('y-axis').value = mousePos.y;
+        }
+        document.onmousemove = mouseMove;
+    </script>
+    X:<input id="x-axis" type="text" />
+    Y:<input id="y-axis" type="text" />
+</body>
+
+</html>
